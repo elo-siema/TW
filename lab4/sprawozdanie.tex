@@ -1,0 +1,702 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+\hypertarget{teoria-wspuxf3ux142bieux17cnoux15bci-lab4---sprawozdanie}{%
+\section{Teoria Współbieżności Lab4 -
+sprawozdanie}\label{teoria-wspuxf3ux142bieux17cnoux15bci-lab4---sprawozdanie}}
+
+\hypertarget{autor-michaux142-flak}{%
+\subsection{Autor: Michał Flak}\label{autor-michaux142-flak}}
+
+\hypertarget{ux107wiczenie}{%
+\subsubsection{Ćwiczenie}\label{ux107wiczenie}}
+
+Badanie efektywności mechanizmów synchronizacji.
+
+Problem czytelników i pisarzy proszę rozwiązać przy pomocy:
+
+\begin{itemize}
+\tightlist
+\item
+  Semaforów
+\item
+  Zmiennych warunkowych
+\end{itemize}
+
+Rozważyć przypadki z faworyzowaniem czytelników, pisarzy oraz z użyciem
+kolejki FIFO.
+
+Proszę wykonać pomiary dla każdego rozwiązania dla różnej ilości
+czytelników (10-100) i pisarzy (od 1 do 10).
+
+W sprawozdaniu proszę narysować wykres czasu w zależności od ilości
+wątków i go zinterpretować.
+
+\hypertarget{implementacja}{%
+\subsection{Implementacja}\label{implementacja}}
+
+Napisano klasę abstrakcyjną, po której będą dziedziczyć poszczególne
+rozwiązania. Przyjmuje ona w konstruktorze ilość powtórzeń pętli
+czytaj/pisz, jak również długość \texttt{sleep} symulującego działanie.
+Klasa zawiera metodę \texttt{start} która przyjmuje w argumentach
+\texttt{int\ readers,\ int\ writers} - czyli ilość tworzonych wątków.
+Watki uruchamiane są w pętli jeden po drugim, po wszystkim metoda czeka
+na zakończenie wszystkich wątków.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{abstract} \KeywordTok{class}\NormalTok{ AbstractReadersWriters}
+\NormalTok{\{}
+    \KeywordTok{protected} \DataTypeTok{int}\NormalTok{ repeat;}
+    \KeywordTok{protected} \DataTypeTok{int}\NormalTok{ sleep;}
+
+    \KeywordTok{public} \FunctionTok{AbstractReadersWriters}\NormalTok{(}\DataTypeTok{int}\NormalTok{ repeat, }\DataTypeTok{int}\NormalTok{ sleep) \{}
+        \KeywordTok{this}\NormalTok{.}\FunctionTok{repeat}\NormalTok{ = repeat;}
+        \KeywordTok{this}\NormalTok{.}\FunctionTok{sleep}\NormalTok{ = sleep;}
+\NormalTok{    \}}
+
+
+    \DataTypeTok{void} \FunctionTok{start}\NormalTok{(}\DataTypeTok{int}\NormalTok{ readers, }\DataTypeTok{int}\NormalTok{ writers)}
+\NormalTok{    \{}
+        \BuiltInTok{List}\NormalTok{\textless{}}\BuiltInTok{Thread}\NormalTok{\textgreater{} threads = }\KeywordTok{new} \BuiltInTok{ArrayList}\NormalTok{\textless{}\textgreater{}();}
+        \KeywordTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ i = }\DecValTok{1}\NormalTok{; i \textless{}= readers; i++) \{}
+            \BuiltInTok{Thread}\NormalTok{ t = }\KeywordTok{new} \BuiltInTok{Thread}\NormalTok{(}\FunctionTok{createReader}\NormalTok{());}
+\NormalTok{            t.}\FunctionTok{setName}\NormalTok{(}\BuiltInTok{String}\FunctionTok{.format}\NormalTok{(}\StringTok{"\#}\SpecialCharTok{\%03d}\StringTok{"}\NormalTok{, i));}
+\NormalTok{            threads.}\FunctionTok{add}\NormalTok{(t);}
+\NormalTok{        \}}
+        \KeywordTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ i = }\DecValTok{1}\NormalTok{; i \textless{}= writers; i++) \{}
+            \BuiltInTok{Thread}\NormalTok{ t = }\KeywordTok{new} \BuiltInTok{Thread}\NormalTok{(}\FunctionTok{createWriter}\NormalTok{());}
+\NormalTok{            t.}\FunctionTok{setName}\NormalTok{(}\BuiltInTok{String}\FunctionTok{.format}\NormalTok{(}\StringTok{"\#}\SpecialCharTok{\%03d}\StringTok{"}\NormalTok{, i));}
+\NormalTok{            threads.}\FunctionTok{add}\NormalTok{(t);}
+\NormalTok{        \}}
+
+        \KeywordTok{for}\NormalTok{ (}\BuiltInTok{Thread}\NormalTok{ t : threads) \{}
+\NormalTok{            t.}\FunctionTok{start}\NormalTok{();}
+\NormalTok{        \}}
+        \KeywordTok{for}\NormalTok{ (}\BuiltInTok{Thread}\NormalTok{ t : threads) \{}
+            \KeywordTok{try}\NormalTok{ \{}
+\NormalTok{                t.}\FunctionTok{join}\NormalTok{(); }\CommentTok{// wait for all to finish}
+\NormalTok{            \} }\KeywordTok{catch}\NormalTok{ (}\BuiltInTok{InterruptedException}\NormalTok{ e) \{}
+\NormalTok{                e.}\FunctionTok{printStackTrace}\NormalTok{();}
+\NormalTok{            \}}
+\NormalTok{        \}}
+\NormalTok{    \}}
+
+    \KeywordTok{abstract} \BuiltInTok{Reader} \FunctionTok{createReader}\NormalTok{();}
+
+    \KeywordTok{abstract} \BuiltInTok{Writer} \FunctionTok{createWriter}\NormalTok{();}
+
+    \KeywordTok{abstract} \KeywordTok{class} \BuiltInTok{Reader} \KeywordTok{implements} \BuiltInTok{Runnable}
+\NormalTok{    \{}
+        \AttributeTok{@Override}
+        \KeywordTok{public} \DataTypeTok{void} \FunctionTok{run}\NormalTok{()}
+\NormalTok{        \{}
+            \KeywordTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ i = }\DecValTok{0}\NormalTok{; i \textless{} repeat; i++) \{}
+                \KeywordTok{try}\NormalTok{ \{}
+                    \FunctionTok{before}\NormalTok{();}
+                    \FunctionTok{read}\NormalTok{();}
+                    \FunctionTok{after}\NormalTok{();}
+\NormalTok{                \} }\KeywordTok{catch}\NormalTok{ (}\BuiltInTok{InterruptedException}\NormalTok{ e) \{}
+                    \BuiltInTok{System}\NormalTok{.}\FunctionTok{err}\NormalTok{.}\FunctionTok{println}\NormalTok{(e.}\FunctionTok{getMessage}\NormalTok{());}
+\NormalTok{                \}}
+\NormalTok{            \}}
+\NormalTok{        \}}
+
+        \DataTypeTok{void} \FunctionTok{read}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}
+\NormalTok{        \{}
+            \BuiltInTok{Thread}\NormalTok{.}\FunctionTok{sleep}\NormalTok{(sleep);}
+\NormalTok{        \}}
+
+        \KeywordTok{abstract} \DataTypeTok{void} \FunctionTok{before}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{;}
+
+        \KeywordTok{abstract} \DataTypeTok{void} \FunctionTok{after}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{;}
+\NormalTok{    \}}
+
+    \KeywordTok{abstract} \KeywordTok{class} \BuiltInTok{Writer} \KeywordTok{implements} \BuiltInTok{Runnable}
+\NormalTok{    \{}
+        \AttributeTok{@Override}
+        \KeywordTok{public} \DataTypeTok{void} \FunctionTok{run}\NormalTok{()}
+\NormalTok{        \{}
+            \KeywordTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ i = }\DecValTok{0}\NormalTok{; i \textless{} repeat; i++) \{}
+                \KeywordTok{try}\NormalTok{ \{}
+                    \FunctionTok{before}\NormalTok{();}
+                    \FunctionTok{write}\NormalTok{();}
+                    \FunctionTok{after}\NormalTok{();}
+\NormalTok{                \} }\KeywordTok{catch}\NormalTok{ (}\BuiltInTok{InterruptedException}\NormalTok{ e) \{}
+                    \BuiltInTok{System}\NormalTok{.}\FunctionTok{err}\NormalTok{.}\FunctionTok{println}\NormalTok{(e.}\FunctionTok{getMessage}\NormalTok{());}
+\NormalTok{                \}}
+\NormalTok{            \}}
+\NormalTok{        \}}
+
+        \DataTypeTok{void} \FunctionTok{write}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}
+\NormalTok{        \{}
+            \BuiltInTok{Thread}\NormalTok{.}\FunctionTok{sleep}\NormalTok{(sleep);}
+\NormalTok{        \}}
+
+        \KeywordTok{abstract} \DataTypeTok{void} \FunctionTok{before}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{;}
+
+        \KeywordTok{abstract} \DataTypeTok{void} \FunctionTok{after}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{;}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{main}{%
+\subsubsection{Main}\label{main}}
+
+Metoda Main tworzy pliki o nazwie \texttt{n\_writers.txt}, który ma
+następującą zawartość:
+
+\begin{verbatim}
+nReaders RWSRP RWSWP RWSQ RWC
+10       396   399   444  397
+20       393   403   516  409
+30       400   412   510  409
+...
+100      398   441   621  409
+\end{verbatim}
+
+gdzie nReaders - liczba wątków czytelników, pozostałe kolumny
+przedstawiają zaś czas w milisekundach rozwiązania problemu dla
+odpowiednich metod.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ Main \{}
+    \KeywordTok{public} \DataTypeTok{static} \DataTypeTok{void} \FunctionTok{main}\NormalTok{(}\BuiltInTok{String}\NormalTok{[] args) \{}
+
+        \DataTypeTok{int}\NormalTok{ repeat = }\DecValTok{100}\NormalTok{;}
+        \DataTypeTok{int}\NormalTok{ sleep = }\DecValTok{1}\NormalTok{;}
+
+        \BuiltInTok{Map}\NormalTok{\textless{}}\BuiltInTok{String}\NormalTok{, AbstractReadersWriters\textgreater{} solutions = }\KeywordTok{new} \BuiltInTok{HashMap}\NormalTok{\textless{}\textgreater{}();}
+\NormalTok{        solutions.}\FunctionTok{put}\NormalTok{(}\StringTok{"RWSRP"}\NormalTok{, }\KeywordTok{new} \FunctionTok{ReadersWritersSemReadersPreference}\NormalTok{(repeat, sleep));}
+\NormalTok{        solutions.}\FunctionTok{put}\NormalTok{(}\StringTok{"RWSWP"}\NormalTok{, }\KeywordTok{new} \FunctionTok{ReadersWritersSemWritersPreference}\NormalTok{(repeat, sleep));}
+\NormalTok{        solutions.}\FunctionTok{put}\NormalTok{(}\StringTok{"RWSQ"}\NormalTok{, }\KeywordTok{new} \FunctionTok{ReadersWritersSemQueue}\NormalTok{(repeat, sleep));}
+\NormalTok{        solutions.}\FunctionTok{put}\NormalTok{(}\StringTok{"RWC"}\NormalTok{, }\KeywordTok{new} \FunctionTok{ReadersWritersCond}\NormalTok{(repeat, sleep));}
+        \KeywordTok{try}\NormalTok{ \{}
+            \KeywordTok{for}\NormalTok{(}\DataTypeTok{int}\NormalTok{ nWriters = }\DecValTok{1}\NormalTok{; nWriters \textless{}= }\DecValTok{10}\NormalTok{; nWriters++)\{}
+                \BuiltInTok{FileWriter}\NormalTok{ myWriter = }\KeywordTok{null}\NormalTok{;}
+\NormalTok{                myWriter = }\KeywordTok{new} \BuiltInTok{FileWriter}\NormalTok{(}\BuiltInTok{String}\FunctionTok{.format}\NormalTok{(}\StringTok{"}\SpecialCharTok{\%d}\StringTok{\_writers.txt"}\NormalTok{, nWriters));}
+\NormalTok{                myWriter.}\FunctionTok{write}\NormalTok{(}\BuiltInTok{String}\FunctionTok{.format}\NormalTok{(}
+                        \StringTok{"}\SpecialCharTok{\%s}\StringTok{ }\SpecialCharTok{\%s}\StringTok{ }\SpecialCharTok{\%s}\StringTok{ }\SpecialCharTok{\%s}\StringTok{ }\SpecialCharTok{\%s\textbackslash{}n}\StringTok{"}\NormalTok{,}
+                        \StringTok{"nReaders"}\NormalTok{,}
+                        \StringTok{"RWSRP"}\NormalTok{,}
+                        \StringTok{"RWSWP"}\NormalTok{,}
+                        \StringTok{"RWSQ"}\NormalTok{,}
+                        \StringTok{"RWC"}
+\NormalTok{                ));}
+
+                \KeywordTok{for}\NormalTok{(}\DataTypeTok{int}\NormalTok{ nReaders = }\DecValTok{10}\NormalTok{; nReaders \textless{}= }\DecValTok{100}\NormalTok{; nReaders+=}\DecValTok{10}\NormalTok{)\{}
+                    \BuiltInTok{Map}\NormalTok{\textless{}}\BuiltInTok{String}\NormalTok{, }\BuiltInTok{Long}\NormalTok{\textgreater{} results = }\KeywordTok{new} \BuiltInTok{HashMap}\NormalTok{\textless{}\textgreater{}();}
+
+                    \DataTypeTok{int}\NormalTok{ finalNReaders = nReaders;}
+                    \DataTypeTok{int}\NormalTok{ finalNWriters = nWriters;}
+\NormalTok{                    solutions.}\FunctionTok{forEach}\NormalTok{((name, solution) {-}\textgreater{} \{}
+
+                        \DataTypeTok{long}\NormalTok{ start = }\BuiltInTok{System}\NormalTok{.}\FunctionTok{currentTimeMillis}\NormalTok{();}
+\NormalTok{                        solution.}\FunctionTok{start}\NormalTok{(finalNReaders, finalNWriters);}
+                        \DataTypeTok{long}\NormalTok{ stop = }\BuiltInTok{System}\NormalTok{.}\FunctionTok{currentTimeMillis}\NormalTok{();}
+\NormalTok{                        results.}\FunctionTok{put}\NormalTok{(name, stop {-} start);}
+                        \BuiltInTok{System}\NormalTok{.}\FunctionTok{out.printf}\NormalTok{(}\StringTok{"}\SpecialCharTok{\%s\textbackslash{}t\%d\textbackslash{}t\%d\textbackslash{}t\%d\textbackslash{}n}\StringTok{"}\NormalTok{, name, finalNWriters, finalNReaders, stop {-} start);}
+\NormalTok{                    \});}
+\NormalTok{                    myWriter.}\FunctionTok{write}\NormalTok{(}\BuiltInTok{String}\FunctionTok{.format}\NormalTok{(}
+                            \StringTok{"}\SpecialCharTok{\%d}\StringTok{ }\SpecialCharTok{\%d}\StringTok{ }\SpecialCharTok{\%d}\StringTok{ }\SpecialCharTok{\%d}\StringTok{ }\SpecialCharTok{\%d\textbackslash{}n}\StringTok{"}\NormalTok{,}
+\NormalTok{                            nReaders,}
+\NormalTok{                            results.}\FunctionTok{get}\NormalTok{(}\StringTok{"RWSRP"}\NormalTok{),}
+\NormalTok{                            results.}\FunctionTok{get}\NormalTok{(}\StringTok{"RWSWP"}\NormalTok{),}
+\NormalTok{                            results.}\FunctionTok{get}\NormalTok{(}\StringTok{"RWSQ"}\NormalTok{),}
+\NormalTok{                            results.}\FunctionTok{get}\NormalTok{(}\StringTok{"RWC"}\NormalTok{)}
+\NormalTok{                    ));}
+\NormalTok{                \}}
+\NormalTok{                myWriter.}\FunctionTok{close}\NormalTok{();}
+\NormalTok{            \}}
+\NormalTok{        \} }\KeywordTok{catch}\NormalTok{ (}\BuiltInTok{IOException}\NormalTok{ e) \{}
+\NormalTok{            e.}\FunctionTok{printStackTrace}\NormalTok{();}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{rwsrp---readerswriterssemreaderspreference}{%
+\subsubsection{1. RWSRP -
+ReadersWritersSemReadersPreference}\label{rwsrp---readerswriterssemreaderspreference}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{ ReadersWritersSemReadersPreference }\KeywordTok{extends}\NormalTok{ AbstractReadersWriters}
+\NormalTok{\{}
+    \KeywordTok{private} \DataTypeTok{int}\NormalTok{ readCount = }\DecValTok{0}\NormalTok{;}
+    \KeywordTok{private} \BuiltInTok{Semaphore}\NormalTok{ resource = }\KeywordTok{new} \BuiltInTok{Semaphore}\NormalTok{(}\DecValTok{1}\NormalTok{);}
+    \KeywordTok{private} \BuiltInTok{Semaphore}\NormalTok{ rmutex = }\KeywordTok{new} \BuiltInTok{Semaphore}\NormalTok{(}\DecValTok{1}\NormalTok{);}
+
+    \KeywordTok{public} \FunctionTok{ReadersWritersSemReadersPreference}\NormalTok{(}\DataTypeTok{int}\NormalTok{ repeat, }\DataTypeTok{int}\NormalTok{ sleep) \{}
+        \KeywordTok{super}\NormalTok{(repeat, sleep);}
+\NormalTok{    \}}
+
+    \BuiltInTok{Reader} \FunctionTok{createReader}\NormalTok{()\{}
+        \KeywordTok{return} \KeywordTok{new} \FunctionTok{ReaderSem}\NormalTok{();}
+\NormalTok{    \}}
+
+    \BuiltInTok{Writer} \FunctionTok{createWriter}\NormalTok{()\{}
+        \KeywordTok{return} \KeywordTok{new} \FunctionTok{WriterSem}\NormalTok{();}
+\NormalTok{    \}}
+
+    \KeywordTok{class}\NormalTok{ ReaderSem }\KeywordTok{extends} \BuiltInTok{Reader}\NormalTok{ \{}
+
+        \AttributeTok{@Override}
+        \DataTypeTok{void} \FunctionTok{before}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{ \{}
+\NormalTok{            rmutex.}\FunctionTok{acquire}\NormalTok{();}
+\NormalTok{            readCount++;}
+            \KeywordTok{if}\NormalTok{(readCount == }\DecValTok{1}\NormalTok{) \{}
+\NormalTok{                resource.}\FunctionTok{acquire}\NormalTok{();}
+\NormalTok{            \}}
+\NormalTok{            rmutex.}\FunctionTok{release}\NormalTok{();}
+\NormalTok{        \}}
+
+        \AttributeTok{@Override}
+        \DataTypeTok{void} \FunctionTok{after}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{ \{}
+\NormalTok{            rmutex.}\FunctionTok{acquire}\NormalTok{();}
+\NormalTok{            readCount{-}{-};}
+            \KeywordTok{if}\NormalTok{(readCount == }\DecValTok{0}\NormalTok{)\{}
+\NormalTok{                resource.}\FunctionTok{release}\NormalTok{();}
+\NormalTok{            \}}
+\NormalTok{            rmutex.}\FunctionTok{release}\NormalTok{();}
+\NormalTok{        \}}
+\NormalTok{    \}}
+
+    \KeywordTok{class}\NormalTok{ WriterSem }\KeywordTok{extends} \BuiltInTok{Writer}\NormalTok{ \{}
+
+        \AttributeTok{@Override}
+        \DataTypeTok{void} \FunctionTok{before}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{ \{}
+\NormalTok{            resource.}\FunctionTok{acquire}\NormalTok{();}
+\NormalTok{        \}}
+
+        \AttributeTok{@Override}
+        \DataTypeTok{void} \FunctionTok{after}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{ \{}
+\NormalTok{            resource.}\FunctionTok{release}\NormalTok{();}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{rwswp---readerswriterssemwriterspreference}{%
+\subsubsection{2. RWSWP -
+ReadersWritersSemWritersPreference}\label{rwswp---readerswriterssemwriterspreference}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{ ReadersWritersSemWritersPreference }\KeywordTok{extends}\NormalTok{ AbstractReadersWriters}
+\NormalTok{\{}
+    \KeywordTok{private} \DataTypeTok{int}\NormalTok{ readCount = }\DecValTok{0}\NormalTok{;}
+    \KeywordTok{private} \DataTypeTok{int}\NormalTok{ writeCount = }\DecValTok{0}\NormalTok{;}
+    \KeywordTok{private} \BuiltInTok{Semaphore}\NormalTok{ resource = }\KeywordTok{new} \BuiltInTok{Semaphore}\NormalTok{(}\DecValTok{1}\NormalTok{);}
+    \KeywordTok{private} \BuiltInTok{Semaphore}\NormalTok{ rmutex = }\KeywordTok{new} \BuiltInTok{Semaphore}\NormalTok{(}\DecValTok{1}\NormalTok{);}
+    \KeywordTok{private} \BuiltInTok{Semaphore}\NormalTok{ wmutex = }\KeywordTok{new} \BuiltInTok{Semaphore}\NormalTok{(}\DecValTok{1}\NormalTok{);}
+    \KeywordTok{private} \BuiltInTok{Semaphore}\NormalTok{ readTry = }\KeywordTok{new} \BuiltInTok{Semaphore}\NormalTok{(}\DecValTok{1}\NormalTok{);}
+
+    \KeywordTok{public} \FunctionTok{ReadersWritersSemWritersPreference}\NormalTok{(}\DataTypeTok{int}\NormalTok{ repeat, }\DataTypeTok{int}\NormalTok{ sleep) \{}
+        \KeywordTok{super}\NormalTok{(repeat, sleep);}
+\NormalTok{    \}}
+
+
+    \BuiltInTok{Reader} \FunctionTok{createReader}\NormalTok{()\{}
+        \KeywordTok{return} \KeywordTok{new} \FunctionTok{ReaderSem}\NormalTok{();}
+\NormalTok{    \}}
+
+    \BuiltInTok{Writer} \FunctionTok{createWriter}\NormalTok{()\{}
+        \KeywordTok{return} \KeywordTok{new} \FunctionTok{WriterSem}\NormalTok{();}
+\NormalTok{    \}}
+
+    \KeywordTok{class}\NormalTok{ ReaderSem }\KeywordTok{extends} \BuiltInTok{Reader}\NormalTok{ \{}
+
+        \AttributeTok{@Override}
+        \DataTypeTok{void} \FunctionTok{before}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{ \{}
+\NormalTok{            readTry.}\FunctionTok{acquire}\NormalTok{();}
+\NormalTok{            rmutex.}\FunctionTok{acquire}\NormalTok{();}
+\NormalTok{            readCount++;}
+            \KeywordTok{if}\NormalTok{(readCount == }\DecValTok{1}\NormalTok{) \{}
+\NormalTok{                resource.}\FunctionTok{acquire}\NormalTok{();}
+\NormalTok{            \}}
+\NormalTok{            rmutex.}\FunctionTok{release}\NormalTok{();}
+\NormalTok{            readTry.}\FunctionTok{release}\NormalTok{();}
+\NormalTok{        \}}
+
+        \AttributeTok{@Override}
+        \DataTypeTok{void} \FunctionTok{after}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{ \{}
+\NormalTok{            rmutex.}\FunctionTok{acquire}\NormalTok{();}
+\NormalTok{            readCount{-}{-};}
+            \KeywordTok{if}\NormalTok{(readCount == }\DecValTok{0}\NormalTok{)\{}
+\NormalTok{                resource.}\FunctionTok{release}\NormalTok{();}
+\NormalTok{            \}}
+\NormalTok{            rmutex.}\FunctionTok{release}\NormalTok{();}
+\NormalTok{        \}}
+\NormalTok{    \}}
+
+    \KeywordTok{class}\NormalTok{ WriterSem }\KeywordTok{extends} \BuiltInTok{Writer}\NormalTok{ \{}
+
+        \AttributeTok{@Override}
+        \DataTypeTok{void} \FunctionTok{before}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{ \{}
+\NormalTok{            wmutex.}\FunctionTok{acquire}\NormalTok{();}
+\NormalTok{            writeCount++;}
+            \KeywordTok{if}\NormalTok{(writeCount == }\DecValTok{1}\NormalTok{) \{}
+\NormalTok{                readTry.}\FunctionTok{acquire}\NormalTok{();}
+\NormalTok{            \}}
+\NormalTok{            wmutex.}\FunctionTok{release}\NormalTok{();}
+\NormalTok{            resource.}\FunctionTok{acquire}\NormalTok{();}
+\NormalTok{        \}}
+
+        \AttributeTok{@Override}
+        \DataTypeTok{void} \FunctionTok{after}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{ \{}
+\NormalTok{            resource.}\FunctionTok{release}\NormalTok{();}
+\NormalTok{            wmutex.}\FunctionTok{acquire}\NormalTok{();}
+\NormalTok{            writeCount{-}{-};}
+            \KeywordTok{if}\NormalTok{(writeCount == }\DecValTok{0}\NormalTok{) \{}
+\NormalTok{                readTry.}\FunctionTok{release}\NormalTok{();}
+\NormalTok{            \}}
+\NormalTok{            wmutex.}\FunctionTok{release}\NormalTok{();}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{rwsq---readerswriterssemqueue}{%
+\subsubsection{3. RWSQ -
+ReadersWritersSemQueue}\label{rwsq---readerswriterssemqueue}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{ ReadersWritersSemQueue }\KeywordTok{extends}\NormalTok{ AbstractReadersWriters}
+\NormalTok{\{}
+    \KeywordTok{private} \DataTypeTok{int}\NormalTok{ readCount = }\DecValTok{0}\NormalTok{;}
+    \KeywordTok{private} \BuiltInTok{Semaphore}\NormalTok{ resourceAccess = }\KeywordTok{new} \BuiltInTok{Semaphore}\NormalTok{(}\DecValTok{1}\NormalTok{);}
+    \KeywordTok{private} \BuiltInTok{Semaphore}\NormalTok{ readCountAccess = }\KeywordTok{new} \BuiltInTok{Semaphore}\NormalTok{(}\DecValTok{1}\NormalTok{);}
+    \KeywordTok{private} \BuiltInTok{Semaphore}\NormalTok{ serviceQueue = }\KeywordTok{new} \BuiltInTok{Semaphore}\NormalTok{(}\DecValTok{1}\NormalTok{);}
+
+    \KeywordTok{public} \FunctionTok{ReadersWritersSemQueue}\NormalTok{(}\DataTypeTok{int}\NormalTok{ repeat, }\DataTypeTok{int}\NormalTok{ sleep) \{}
+        \KeywordTok{super}\NormalTok{(repeat, sleep);}
+\NormalTok{    \}}
+
+    \BuiltInTok{Reader} \FunctionTok{createReader}\NormalTok{()\{}
+        \KeywordTok{return} \KeywordTok{new} \FunctionTok{ReaderSem}\NormalTok{();}
+\NormalTok{    \}}
+    \BuiltInTok{Writer} \FunctionTok{createWriter}\NormalTok{()\{}
+        \KeywordTok{return} \KeywordTok{new} \FunctionTok{WriterSem}\NormalTok{();}
+\NormalTok{    \}}
+
+    \KeywordTok{class}\NormalTok{ ReaderSem }\KeywordTok{extends} \BuiltInTok{Reader}\NormalTok{ \{}
+
+        \AttributeTok{@Override}
+        \DataTypeTok{void} \FunctionTok{before}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{ \{}
+\NormalTok{            serviceQueue.}\FunctionTok{acquire}\NormalTok{();           }\CommentTok{// wait in line to be serviced}
+\NormalTok{            readCountAccess.}\FunctionTok{acquire}\NormalTok{();        }\CommentTok{// request exclusive access to readCount}
+            \CommentTok{// \textless{}ENTER\textgreater{}}
+            \KeywordTok{if}\NormalTok{ (readCount == }\DecValTok{0}\NormalTok{)         }\CommentTok{// if there are no readers already reading:}
+\NormalTok{                resourceAccess.}\FunctionTok{acquire}\NormalTok{();     }\CommentTok{// request resource access for readers (writers blocked)}
+\NormalTok{            readCount++;                }\CommentTok{// update count of active readers}
+            \CommentTok{// \textless{}/ENTER\textgreater{}}
+\NormalTok{            serviceQueue.}\FunctionTok{release}\NormalTok{();           }\CommentTok{// let next in line be serviced}
+\NormalTok{            readCountAccess.}\FunctionTok{release}\NormalTok{();        }\CommentTok{// release access to readCount}
+\NormalTok{        \}}
+
+        \AttributeTok{@Override}
+        \DataTypeTok{void} \FunctionTok{after}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{ \{}
+\NormalTok{            readCountAccess.}\FunctionTok{acquire}\NormalTok{();        }\CommentTok{// request exclusive access to readCount}
+            \CommentTok{// \textless{}EXIT\textgreater{}}
+\NormalTok{            readCount{-}{-};                }\CommentTok{// update count of active readers}
+            \KeywordTok{if}\NormalTok{ (readCount == }\DecValTok{0}\NormalTok{)         }\CommentTok{// if there are no readers left:}
+\NormalTok{                resourceAccess.}\FunctionTok{release}\NormalTok{();     }\CommentTok{// release resource access for all}
+            \CommentTok{// \textless{}/EXIT\textgreater{}}
+\NormalTok{            readCountAccess.}\FunctionTok{release}\NormalTok{();        }\CommentTok{// release access to readCount}
+\NormalTok{        \}}
+\NormalTok{    \}}
+
+    \KeywordTok{class}\NormalTok{ WriterSem }\KeywordTok{extends} \BuiltInTok{Writer}\NormalTok{ \{}
+
+        \AttributeTok{@Override}
+        \DataTypeTok{void} \FunctionTok{before}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{ \{}
+\NormalTok{            serviceQueue.}\FunctionTok{acquire}\NormalTok{();           }\CommentTok{// wait in line to be serviced}
+            \CommentTok{// \textless{}ENTER\textgreater{}}
+\NormalTok{            resourceAccess.}\FunctionTok{acquire}\NormalTok{();         }\CommentTok{// request exclusive access to resource}
+            \CommentTok{// \textless{}/ENTER\textgreater{}}
+\NormalTok{            serviceQueue.}\FunctionTok{release}\NormalTok{();           }\CommentTok{// let next in line be serviced}
+\NormalTok{        \}}
+
+        \AttributeTok{@Override}
+        \DataTypeTok{void} \FunctionTok{after}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{ \{}
+\NormalTok{            resourceAccess.}\FunctionTok{release}\NormalTok{();}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{rwc---readerswriterscond}{%
+\subsubsection{4. RWC -
+ReadersWritersCond}\label{rwc---readerswriterscond}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{ ReadersWritersCond }\KeywordTok{extends}\NormalTok{ AbstractReadersWriters}
+\NormalTok{\{}
+    \KeywordTok{private} \DataTypeTok{final} \BuiltInTok{Lock}\NormalTok{ m = }\KeywordTok{new} \BuiltInTok{ReentrantLock}\NormalTok{();}
+    \KeywordTok{private} \DataTypeTok{final} \BuiltInTok{Condition}\NormalTok{ turn = m.}\FunctionTok{newCondition}\NormalTok{();}
+    \KeywordTok{private} \DataTypeTok{int}\NormalTok{ writers = }\DecValTok{0}\NormalTok{;}
+    \KeywordTok{private} \DataTypeTok{int}\NormalTok{ writing = }\DecValTok{0}\NormalTok{;}
+    \KeywordTok{private} \DataTypeTok{int}\NormalTok{ reading = }\DecValTok{0}\NormalTok{;}
+
+    \KeywordTok{public} \FunctionTok{ReadersWritersCond}\NormalTok{(}\DataTypeTok{int}\NormalTok{ repeat, }\DataTypeTok{int}\NormalTok{ sleep) \{}
+        \KeywordTok{super}\NormalTok{(repeat, sleep);}
+\NormalTok{    \}}
+
+    \BuiltInTok{Reader} \FunctionTok{createReader}\NormalTok{()\{}
+        \KeywordTok{return} \KeywordTok{new} \FunctionTok{ReaderCond}\NormalTok{();}
+\NormalTok{    \}}
+
+    \BuiltInTok{Writer} \FunctionTok{createWriter}\NormalTok{()\{}
+        \KeywordTok{return} \KeywordTok{new} \FunctionTok{WriterCond}\NormalTok{();}
+\NormalTok{    \}}
+
+    \KeywordTok{class}\NormalTok{ ReaderCond }\KeywordTok{extends} \BuiltInTok{Reader}\NormalTok{ \{}
+
+        \AttributeTok{@Override}
+        \DataTypeTok{void} \FunctionTok{before}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{ \{}
+\NormalTok{            m.}\FunctionTok{lock}\NormalTok{();}
+            \KeywordTok{while}\NormalTok{ (}\DecValTok{0}\NormalTok{ \textless{} writers) \{}
+\NormalTok{                turn.}\FunctionTok{await}\NormalTok{();}
+\NormalTok{            \}}
+\NormalTok{            reading++;}
+\NormalTok{            m.}\FunctionTok{unlock}\NormalTok{();}
+\NormalTok{        \}}
+
+        \AttributeTok{@Override}
+        \DataTypeTok{void} \FunctionTok{after}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{ \{}
+\NormalTok{            m.}\FunctionTok{lock}\NormalTok{();}
+\NormalTok{            reading{-}{-};}
+\NormalTok{            turn.}\FunctionTok{signalAll}\NormalTok{();}
+\NormalTok{            m.}\FunctionTok{unlock}\NormalTok{();}
+\NormalTok{        \}}
+\NormalTok{    \}}
+
+    \KeywordTok{class}\NormalTok{ WriterCond }\KeywordTok{extends} \BuiltInTok{Writer}\NormalTok{ \{}
+
+        \AttributeTok{@Override}
+        \DataTypeTok{void} \FunctionTok{before}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{ \{}
+\NormalTok{            m.}\FunctionTok{lock}\NormalTok{();}
+\NormalTok{            writers++;}
+            \KeywordTok{while}\NormalTok{ (}\DecValTok{0}\NormalTok{ \textless{} reading || }\DecValTok{0}\NormalTok{ \textless{} writing) \{}
+\NormalTok{                turn.}\FunctionTok{await}\NormalTok{();}
+\NormalTok{            \}}
+\NormalTok{            writing++;}
+\NormalTok{            m.}\FunctionTok{unlock}\NormalTok{();}
+\NormalTok{        \}}
+
+        \AttributeTok{@Override}
+        \DataTypeTok{void} \FunctionTok{after}\NormalTok{() }\KeywordTok{throws} \BuiltInTok{InterruptedException}\NormalTok{ \{}
+\NormalTok{            m.}\FunctionTok{lock}\NormalTok{();}
+\NormalTok{            writing{-}{-};}
+\NormalTok{            writers{-}{-};}
+\NormalTok{            turn.}\FunctionTok{signalAll}\NormalTok{();}
+\NormalTok{            m.}\FunctionTok{unlock}\NormalTok{();}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{wyniki}{%
+\subsection{Wyniki}\label{wyniki}}
+
+Wykresy czasu od ilości wątków czytelnika dla określonych ilości
+pisarzy:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data \textless{}{-}}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"1\_writers.txt"}\NormalTok{, }\DataTypeTok{header=}\NormalTok{T)}
+\KeywordTok{plot}\NormalTok{(data}\OperatorTok{$}\NormalTok{nReaders, data}\OperatorTok{$}\NormalTok{RWSRP, }\DataTypeTok{type=}\StringTok{"l"}\NormalTok{, }\DataTypeTok{main=}\StringTok{"1 writer"}\NormalTok{, }
+    \DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{200}\NormalTok{, }\DecValTok{700}\NormalTok{), }\DataTypeTok{xaxs=}\StringTok{"i"}\NormalTok{, }\DataTypeTok{yaxs=}\StringTok{"i"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"orange"}\NormalTok{, }
+    \DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Readers"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Time [ms]"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(data}\OperatorTok{$}\NormalTok{nReaders, data}\OperatorTok{$}\NormalTok{RWSWP, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\StringTok{"red"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(data}\OperatorTok{$}\NormalTok{nReaders, data}\OperatorTok{$}\NormalTok{RWSQ, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\StringTok{"green"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(data}\OperatorTok{$}\NormalTok{nReaders, data}\OperatorTok{$}\NormalTok{RWC, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }\DataTypeTok{legend=}\KeywordTok{c}\NormalTok{(}\StringTok{"Readers{-}P"}\NormalTok{,}\StringTok{"Writers{-}P"}\NormalTok{, }\StringTok{"FIFO"}\NormalTok{, }\StringTok{"Cond"}\NormalTok{), }
+    \DataTypeTok{lwd=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"orange"}\NormalTok{,}\StringTok{"red"}\NormalTok{,}\StringTok{"green"}\NormalTok{,}\StringTok{"blue"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sprawozdanie_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data \textless{}{-}}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"2\_writers.txt"}\NormalTok{, }\DataTypeTok{header=}\NormalTok{T)}
+\KeywordTok{plot}\NormalTok{(data}\OperatorTok{$}\NormalTok{nReaders, data}\OperatorTok{$}\NormalTok{RWSRP, }\DataTypeTok{type=}\StringTok{"l"}\NormalTok{, }\DataTypeTok{main=}\StringTok{"2 writers"}\NormalTok{, }
+    \DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{200}\NormalTok{, }\DecValTok{1000}\NormalTok{), }\DataTypeTok{xaxs=}\StringTok{"i"}\NormalTok{, }\DataTypeTok{yaxs=}\StringTok{"i"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"orange"}\NormalTok{, }
+    \DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Readers"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Time [ms]"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(data}\OperatorTok{$}\NormalTok{nReaders, data}\OperatorTok{$}\NormalTok{RWSWP, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\StringTok{"red"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(data}\OperatorTok{$}\NormalTok{nReaders, data}\OperatorTok{$}\NormalTok{RWSQ, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\StringTok{"green"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(data}\OperatorTok{$}\NormalTok{nReaders, data}\OperatorTok{$}\NormalTok{RWC, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }\DataTypeTok{legend=}\KeywordTok{c}\NormalTok{(}\StringTok{"Readers{-}P"}\NormalTok{,}\StringTok{"Writers{-}P"}\NormalTok{, }\StringTok{"FIFO"}\NormalTok{, }\StringTok{"Cond"}\NormalTok{), }
+    \DataTypeTok{lwd=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"orange"}\NormalTok{,}\StringTok{"red"}\NormalTok{,}\StringTok{"green"}\NormalTok{,}\StringTok{"blue"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sprawozdanie_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data \textless{}{-}}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"5\_writers.txt"}\NormalTok{, }\DataTypeTok{header=}\NormalTok{T)}
+\KeywordTok{plot}\NormalTok{(data}\OperatorTok{$}\NormalTok{nReaders, data}\OperatorTok{$}\NormalTok{RWSRP, }\DataTypeTok{type=}\StringTok{"l"}\NormalTok{, }\DataTypeTok{main=}\StringTok{"5 writers"}\NormalTok{, }
+    \DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{1000}\NormalTok{, }\DecValTok{2000}\NormalTok{), }\DataTypeTok{xaxs=}\StringTok{"i"}\NormalTok{, }\DataTypeTok{yaxs=}\StringTok{"i"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"orange"}\NormalTok{, }
+    \DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Readers"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Time [ms]"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(data}\OperatorTok{$}\NormalTok{nReaders, data}\OperatorTok{$}\NormalTok{RWSWP, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\StringTok{"red"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(data}\OperatorTok{$}\NormalTok{nReaders, data}\OperatorTok{$}\NormalTok{RWSQ, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\StringTok{"green"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(data}\OperatorTok{$}\NormalTok{nReaders, data}\OperatorTok{$}\NormalTok{RWC, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }\DataTypeTok{legend=}\KeywordTok{c}\NormalTok{(}\StringTok{"Readers{-}P"}\NormalTok{,}\StringTok{"Writers{-}P"}\NormalTok{, }\StringTok{"FIFO"}\NormalTok{, }\StringTok{"Cond"}\NormalTok{), }
+    \DataTypeTok{lwd=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"orange"}\NormalTok{,}\StringTok{"red"}\NormalTok{,}\StringTok{"green"}\NormalTok{,}\StringTok{"blue"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sprawozdanie_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data \textless{}{-}}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"10\_writers.txt"}\NormalTok{, }\DataTypeTok{header=}\NormalTok{T)}
+\KeywordTok{plot}\NormalTok{(data}\OperatorTok{$}\NormalTok{nReaders, data}\OperatorTok{$}\NormalTok{RWSRP, }\DataTypeTok{type=}\StringTok{"l"}\NormalTok{, }\DataTypeTok{main=}\StringTok{"10 writers"}\NormalTok{, }
+    \DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{2000}\NormalTok{, }\DecValTok{3000}\NormalTok{), }\DataTypeTok{xaxs=}\StringTok{"i"}\NormalTok{, }\DataTypeTok{yaxs=}\StringTok{"i"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"orange"}\NormalTok{, }
+    \DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Readers"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Time [ms]"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(data}\OperatorTok{$}\NormalTok{nReaders, data}\OperatorTok{$}\NormalTok{RWSWP, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\StringTok{"red"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(data}\OperatorTok{$}\NormalTok{nReaders, data}\OperatorTok{$}\NormalTok{RWSQ, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\StringTok{"green"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(data}\OperatorTok{$}\NormalTok{nReaders, data}\OperatorTok{$}\NormalTok{RWC, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }\DataTypeTok{legend=}\KeywordTok{c}\NormalTok{(}\StringTok{"Readers{-}P"}\NormalTok{,}\StringTok{"Writers{-}P"}\NormalTok{, }\StringTok{"FIFO"}\NormalTok{, }\StringTok{"Cond"}\NormalTok{), }
+    \DataTypeTok{lwd=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"orange"}\NormalTok{,}\StringTok{"red"}\NormalTok{,}\StringTok{"green"}\NormalTok{,}\StringTok{"blue"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sprawozdanie_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\hypertarget{wnioski}{%
+\subsection{Wnioski}\label{wnioski}}
+
+Metody:
+
+\begin{itemize}
+\item
+  Semaphore readers-preference
+\item
+  Semaphore writers-preference
+\item
+  Conditional variables
+\end{itemize}
+
+Zachowują się w sposób bardzo zbliżony. Przy większych ilościach
+czytelników widzimy jednak, że najszybszy okazuje się
+readers-preference, a najwolniejszy writers-preference.
+
+Zdecydowanie odbiega od nich metoda FIFO z użyciem semaforów - czasy są
+dużo wyższe i bardzo rozbieżne.
+
+\end{document}
