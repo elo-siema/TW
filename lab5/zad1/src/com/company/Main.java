@@ -9,7 +9,7 @@ public class Main {
         long start = System.currentTimeMillis();
         int bufferSize = 1000;
         Buffer buffer = new Buffer(bufferSize);
-        int noOfThreads = 60;
+        int noOfThreads = 100;
 
         //create producer
         Thread tp = new Thread(new Producer(buffer, 0));
