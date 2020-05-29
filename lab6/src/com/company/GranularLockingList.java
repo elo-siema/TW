@@ -1,113 +1,131 @@
 package com.company;
 
-import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class MyList implements IList {
+public class GranularLockingList implements IList {
     private Node first;
+    private int singleOperationTimeCost;
+    private ReentrantLock firstElementLock;
 
-    public void print(){
-        Node current = first;
-        while(current != null){
-            current.printValue();
-            current = current.next;
+    public GranularLockingList(int singleOperationTimeCost) {
+        this.singleOperationTimeCost = singleOperationTimeCost;
+        firstElementLock = new ReentrantLock();
+    }
+
+    private void applyTimeCost(){
+        try {
+            Thread.sleep(singleOperationTimeCost);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
-    public boolean contains(Object o){
-        try {
-            //handle case of empty list
-            if(first == null) return false;
+    public boolean contains(Object o) {
+        //handle case of empty list
+        if(first == null) return false;
 
-            //Search the list
-            Node current = first;
-            current.lock();
-            do {
-                if(current.getValue() == o) {
-                    current.unlock();
-                    return true;
-                }
-                if(current.getNext() != null) current.getNext().lock();
-                Node temp = current;
-                current = current.getNext();
-                temp.unlock();
-            } while(current != null);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            return false;
-        }
+        //Search the list
+        Node current = first;
+        current.lock();
+        do {
+            applyTimeCost();
+            if(current.getValue() == o) {
+                current.unlock();
+                return true;
+            }
+            if(current.getNext() != null) current.getNext().lock();
+            Node temp = current;
+            current = current.getNext();
+            temp.unlock();
+        } while(current != null);
+
         return false;
     }
 
-    public boolean remove(Object o){
-        try {
-            if(o == null) return false;
+    public boolean remove(Object o) {
+        Node previous = null, current = null;
+        if(o == null) return false;
+
+        //lock access to first element to prevent other threads
+        //from removing the head
+        synchronized (this) {
 
             //List empty? return
-            if(first == null) {
+            if (first == null) {
+                //System.out.println("List empty: " + o);
                 return false;
             }
 
             //First element should be removed?
             first.lock();
-            if(first.getValue() == o) {
-                this.first = first.next;
+            if (first.getValue() == o) {
+                //System.out.println("Removing first element: " + o);
+                applyTimeCost();
+                var temp = first;
+                this.first = temp.getNext();
+                temp.unlock();
                 return true;
             }
 
-            //search the rest
-            Node previous = first;
-            Node current = first.getNext();
-            previous.lock();
-            while(current != null) {
-                current.lock();
-                if(current.getValue() == o) {
-                    previous.setNext(current.getNext());
-                    previous.unlock();
-                    current.unlock();
-                    return true;
-                }
-                previous.unlock();
-                previous = current;
-                current = current.getNext();
+            //list 1-element long?
+            if (first.getNext() == null) {
+                first.unlock();
+                //System.out.println("List is 1-element long: " + o);
+                return false;
             }
 
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            return false;
+            //2 locks acquired, go with the rest
+            previous = first;
+            current = first.getNext();
+
+            //end lock on first element
         }
+
+        while(current != null) {
+            current.lock();
+            applyTimeCost();
+            if(current.getValue() == o) {
+                //System.out.println("Removing nth element: " + o);
+                previous.setNext(current.getNext());
+                previous.unlock();
+                current.unlock();
+                return true;
+            }
+            previous.unlock();
+            previous = current;
+            current = current.getNext();
+        }
+        previous.unlock();
+
         return false;
     }
 
-    public boolean add(Object o){
-        try {
-            if(o == null) return false;
+    public boolean add(Object o) {
+        if(o == null) return false;
 
-            Node newNode = new Node(o);
+        Node newNode = new Node(o);
 
-            //List empty? Insert as first element
-            if(first == null) {
-                first = newNode;
-                return true;
-            }
-
-            //Search for the tail
-            Node current = first;
-            current.lock();
-            while(current.getNext() != null){
-                if(current.getNext() != null) current.getNext().lock();
-                Node temp = current;
-                current = current.getNext();
-                temp.unlock();
-            }
-            //We have the tail of the list, now add new element
-            current.setNext(newNode);
-            //Release lock on the old tail
-            current.unlock();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            return false;
+        //List empty? Insert as first element
+        if(first == null) {
+            first = newNode;
+            return true;
         }
+
+        //Search for the tail
+        Node current = first;
+        current.lock();
+        while(current.getNext() != null){
+            if(current.getNext() != null) current.getNext().lock();
+            Node temp = current;
+            current = current.getNext();
+            temp.unlock();
+        }
+        //We have the tail of the list, now add new element
+        applyTimeCost();
+        current.setNext(newNode);
+        //Release lock on the old tail
+        current.unlock();
+
         return true;
     }
 
@@ -129,29 +147,16 @@ public class MyList implements IList {
             this.lock.unlock();
         }
 
-        public Object getValue() throws IllegalAccessException {
-            if(this.lock.isHeldByCurrentThread()){
-                return value;
-            }
-            else throw new IllegalAccessException("Lock the node first");
+        public Object getValue(){
+            return value;
         }
 
-        public void setNext(Node nextNode) throws IllegalAccessException {
-            if(this.lock.isHeldByCurrentThread()){
-                this.next = nextNode;
-            }
-            else throw new IllegalAccessException("Lock the node first");
+        public void setNext(Node nextNode){
+            this.next = nextNode;
         }
 
-        public Node getNext() throws IllegalAccessException {
-            if(this.lock.isHeldByCurrentThread()){
-                return next;
-            }
-            else throw new IllegalAccessException("Lock the node first");
-        }
-
-        public void printValue(){
-            System.out.println(value);
+        public Node getNext(){
+            return next;
         }
     }
 }

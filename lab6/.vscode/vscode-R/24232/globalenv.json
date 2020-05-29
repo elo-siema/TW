@@ -1,1 +1,1 @@
-{}
+{"data":{"class":["data.frame"],"type":"list","length":9,"str":"'data.frame':\t10 obs. of  9 variables:","names":["elements","threads","cost","randomAddGranular","randomContainsGranular","randomRemoveGranular","randomAddWhole","randomContainsWhole","randomRemoveWhole"]}}

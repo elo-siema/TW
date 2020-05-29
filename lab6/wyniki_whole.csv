@@ -1,20 +1,8 @@
-list: GranularLockingList, elements: 200, threadCount: 10, randomAdd[ms]: 411, randomContains[ms]: 6934, randomRemove[ms]: 5402
-list: WholeLockingList, elements: 200, threadCount: 10, randomAdd[ms]: 399, randomContains[ms]: 65017, randomRemove[ms]: 53345
-list: GranularLockingList, elements: 200, threadCount: 20, randomAdd[ms]: 411, randomContains[ms]: 3861, randomRemove[ms]: 2919
-list: WholeLockingList, elements: 200, threadCount: 20, randomAdd[ms]: 394, randomContains[ms]: 64426, randomRemove[ms]: 51948
-list: GranularLockingList, elements: 200, threadCount: 30, randomAdd[ms]: 375, randomContains[ms]: 2179, randomRemove[ms]: 1766
-list: WholeLockingList, elements: 200, threadCount: 30, randomAdd[ms]: 350, randomContains[ms]: 54574, randomRemove[ms]: 42117
-list: GranularLockingList, elements: 200, threadCount: 40, randomAdd[ms]: 420, randomContains[ms]: 2136, randomRemove[ms]: 1825
-list: WholeLockingList, elements: 200, threadCount: 40, randomAdd[ms]: 371, randomContains[ms]: 65668, randomRemove[ms]: 49671
-list: GranularLockingList, elements: 200, threadCount: 50, randomAdd[ms]: 412, randomContains[ms]: 1811, randomRemove[ms]: 1427
-list: WholeLockingList, elements: 200, threadCount: 50, randomAdd[ms]: 391, randomContains[ms]: 65466, randomRemove[ms]: 52381
-list: GranularLockingList, elements: 200, threadCount: 60, randomAdd[ms]: 364, randomContains[ms]: 1254, randomRemove[ms]: 1128
-list: WholeLockingList, elements: 200, threadCount: 60, randomAdd[ms]: 358, randomContains[ms]: 53373, randomRemove[ms]: 40417
-list: GranularLockingList, elements: 200, threadCount: 70, randomAdd[ms]: 284, randomContains[ms]: 753, randomRemove[ms]: 819
-list: WholeLockingList, elements: 200, threadCount: 70, randomAdd[ms]: 290, randomContains[ms]: 32445, randomRemove[ms]: 26117
-list: GranularLockingList, elements: 200, threadCount: 80, randomAdd[ms]: 473, randomContains[ms]: 907, randomRemove[ms]: 897
-list: WholeLockingList, elements: 200, threadCount: 80, randomAdd[ms]: 321, randomContains[ms]: 40191, randomRemove[ms]: 33045
-list: GranularLockingList, elements: 200, threadCount: 90, randomAdd[ms]: 371, randomContains[ms]: 967, randomRemove[ms]: 1008
-list: WholeLockingList, elements: 200, threadCount: 90, randomAdd[ms]: 359, randomContains[ms]: 53435, randomRemove[ms]: 42465
-list: GranularLockingList, elements: 200, threadCount: 100, randomAdd[ms]: 428, randomContains[ms]: 1064, randomRemove[ms]: 1158
-list: WholeLockingList, elements: 200, threadCount: 100, randomAdd[ms]: 420, randomContains[ms]: 64555, randomRemove[ms]: 53655
+10 , 399, 65017, 53345
+20 , 394, 64426, 51948
+30 , 350, 54574, 42117
+50 , 391, 65466, 52381
+60 , 358, 53373, 40417
+70 , 290, 32445, 26117
+90 , 359, 53435, 42465
+100, 420, 64555, 53655
